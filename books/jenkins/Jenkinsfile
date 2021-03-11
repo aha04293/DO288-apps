@@ -139,7 +139,10 @@ pipeline {
         stage('Wait for deployment in Staging') {
             steps {
                 sh "oc get route ${APP_NAME} -n ${STAGE_PROJECT} -o jsonpath='{ .spec.host }' --loglevel=4 > routehost"
-
+                sh "echo #####################"
+                sh "echo ${STAGE_PROJECT}"
+                sh "echo ${APP_NAME}"
+                sh "echo #####################"
                 script {
                     routeHost = readFile('routehost').trim()
 
